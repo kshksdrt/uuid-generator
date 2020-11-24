@@ -1,21 +1,52 @@
 <template>
 	<div class="card rounded-subtle">
-		<h3>Saved UUIDs</h3>
+		<div class="flex-between">
+			<h3>Saved UUIDs</h3>
+			<button class="ml4" @click="toggleEditState">
+				{{ editState ? "done" : "edit" }}
+			</button>
+		</div>
 		<div id="UUIDList">
 			<div class="list-item" v-for="each in list" :key="each.uuid">
-				<p class="text-secondary pb2">{{ each.name }}</p>
-				<p class="text-smallest mono">{{ each.uuid }}</p>
+				<div class="flex-between">
+					<div>
+						<p class="text-secondary pb2">{{ each.name }}</p>
+						<p class="text-smallest mono">{{ each.uuid }}</p>
+					</div>
+					<transition name="fade">
+						<img
+							v-if="editState"
+							src="@/assets/delete.png"
+							width="18"
+							alt="Delete button"
+							class="p2 hover-bg-1"
+							@click="removeItem(each.uuid)"
+						/>
+					</transition>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script setup>
-import { defineComponent } from "vue";
-import { state } from "@/scripts/state";
+<script setup lang="ts">
+import { defineComponent, ref } from "vue";
+import { mutate, get } from "@/scripts/state";
 
-const list = state.savedUUIDs.value;
-export { list };
+const list = get.savedUUIDs;
+
+const editState = ref(false);
+
+function toggleEditState() {
+	editState.value = !editState.value;
+}
+
+function removeItem(uuid: string) {
+	console.log("removing", uuid);
+	mutate.removeUUID(uuid);
+}
+
+export { list, editState, toggleEditState, removeItem };
 
 export default defineComponent({
 	name: "SavedUUIDs",
@@ -46,5 +77,15 @@ export default defineComponent({
 	p {
 		margin: 0;
 	}
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 100ms ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
 }
 </style>
