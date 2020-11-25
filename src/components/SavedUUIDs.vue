@@ -12,24 +12,26 @@
 					You do not have any saved UUIDs.
 				</p>
 			</div>
-			<div class="list-item" v-for="each in list" :key="each.uuid">
-				<div class="flex-between">
-					<div>
-						<p class="text-secondary pb2">{{ each.name }}</p>
-						<p class="text-smallest mono">{{ each.uuid }}</p>
+			<transition-group name="fade-slow">
+				<div class="list-item" v-for="each in list" :key="each.uuid">
+					<div class="flex-between">
+						<div>
+							<p class="text-secondary pb2">{{ each.name }}</p>
+							<p class="text-smallest mono">{{ each.uuid }}</p>
+						</div>
+						<transition name="fade">
+							<img
+								v-if="editState"
+								src="@/assets/delete.png"
+								width="18"
+								alt="Delete button"
+								class="p2 hover-bg-1"
+								@click="removeItem(each.uuid)"
+							/>
+						</transition>
 					</div>
-					<transition name="fade">
-						<img
-							v-if="editState"
-							src="@/assets/delete.png"
-							width="18"
-							alt="Delete button"
-							class="p2 hover-bg-1"
-							@click="removeItem(each.uuid)"
-						/>
-					</transition>
 				</div>
-			</div>
+			</transition-group>
 		</div>
 	</div>
 </template>
@@ -47,7 +49,6 @@ function toggleEditState() {
 }
 
 function removeItem(uuid: string) {
-	console.log("removing", uuid);
 	mutate.removeUUID(uuid);
 }
 
@@ -86,11 +87,21 @@ export default defineComponent({
 
 .fade-enter-active,
 .fade-leave-active {
-	transition: opacity 100ms ease;
+	transition: opacity 200ms ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
+	opacity: 0;
+}
+
+.fade-slow-enter-active,
+.fade-slow-leave-active {
+	transition: opacity 200ms ease;
+}
+
+.fade-slow-enter-from,
+.fade-slow-leave-to {
 	opacity: 0;
 }
 </style>
