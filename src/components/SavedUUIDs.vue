@@ -2,11 +2,16 @@
 	<div class="card rounded-subtle">
 		<div class="flex-between">
 			<h3>Saved UUIDs</h3>
-			<button class="ml4" @click="toggleEditState">
+			<button class="ml4" @click="toggleEditState" v-if="list.length !== 0">
 				{{ editState ? "done" : "edit" }}
 			</button>
 		</div>
 		<div id="UUIDList">
+			<div v-if="list.length === 0" class="pt8">
+				<p class="margin-auto text-center text-dim">
+					You do not have any saved UUIDs.
+				</p>
+			</div>
 			<div class="list-item" v-for="each in list" :key="each.uuid">
 				<div class="flex-between">
 					<div>
