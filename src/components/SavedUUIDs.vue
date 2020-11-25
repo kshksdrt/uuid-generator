@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { defineComponent, ref } from "vue";
-import { mutate, get } from "@/scripts/state";
+import { mutate, get } from "@/scripts/store/state";
 
 const list = get.savedUUIDs;
 

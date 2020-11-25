@@ -1,7 +1,7 @@
 import { computed, ref } from "vue";
 import { v4 as uuid } from "uuid";
-import { UuidObject } from "@/scripts/interfaces";
-import { storeUUIDsToLs } from "@/scripts/ls";
+import { UuidObject } from "@/scripts/store/interfaces";
+import { storeUUIDsToLs } from "@/scripts/store/ls";
 
 // State
 const savedUUIDs = ref([] as UuidObject[])

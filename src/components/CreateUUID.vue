@@ -27,8 +27,8 @@
 
 <script setup>
 import { defineComponent, ref } from "vue";
-import { mutate } from "@/scripts/state";
-import { names } from "@/name.js";
+import { mutate } from "@/scripts/store/state";
+import { names } from "@/scripts/utilities/name";
 
 const name = ref("");
 

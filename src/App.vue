@@ -9,7 +9,7 @@
 import { defineComponent } from "vue";
 import CreateUUID from "@/components/CreateUUID.vue";
 import SavedUUIDs from "@/components/SavedUUIDs.vue";
-import initialize from "@/scripts/initialize";
+import initialize from "@/scripts/core/initialize";
 
 initialize();
 

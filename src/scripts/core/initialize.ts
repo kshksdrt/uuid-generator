@@ -1,6 +1,6 @@
-import { UuidObject } from "@/scripts/interfaces";
-import { getUUIDsFromLs } from "@/scripts/ls";
-import { mutate } from "@/scripts/state";
+import { UuidObject } from "@/scripts/store/interfaces";
+import { getUUIDsFromLs } from "@/scripts/store/ls";
+import { mutate } from "@/scripts/store/state";
 
 export default function () {
   const x = getUUIDsFromLs()

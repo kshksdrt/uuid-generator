@@ -1,4 +1,4 @@
-import { UuidObject } from "@/scripts/interfaces";
+import { UuidObject } from "@/scripts/store/interfaces";
 
 const LS_KEY = {
   saved: "UUID.saved",
