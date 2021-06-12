@@ -1,4 +1,4 @@
-# uuid-generator
+# uuid-generator(Project has been abandoned)
 
 ## Project setup
 
